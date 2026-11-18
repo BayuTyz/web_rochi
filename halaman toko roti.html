@@ -1,0 +1,548 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Pesan produk makanan favoritmu dengan mudah melalui WhatsApp."
+    />
+    <title>Nama Brand | Gurihnya Bikin Nagih</title>
+    <style>
+      :root {
+        --primary: #e85d24;
+        --primary-dark: #bd3f12;
+        --cream: #fff8ed;
+        --ink: #29231f;
+        --muted: #756b63;
+        --white: #fff;
+        --green: #16834b;
+        --radius: 20px;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        color: var(--ink);
+        background: var(--cream);
+        line-height: 1.6;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        text-decoration: none;
+        color: inherit;
+      }
+
+      .brand-logo {
+        height: 60px;
+        width: 60px;
+        object-fit: contain;
+        display: block;
+      }
+
+      .brand-text {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        line-height: 1.2;
+      }
+
+      .brand-text strong {
+        font-size: 22px;
+        font-weight: 800;
+        color: #c43d16;
+        margin: 0;
+      }
+
+      .brand-text small {
+        display: block;
+        font-size: 12px;
+        color: #75665d;
+        margin-top: 3px;
+        white-space: nowrap;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      .container {
+        width: min(1080px, 90%);
+        margin: auto;
+      }
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        background: rgba(255, 248, 237, 0.95);
+        border-bottom: 1px solid #f0e4d6;
+        backdrop-filter: blur(10px);
+      }
+      .nav {
+        min-height: 72px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+      }
+      .brand {
+        font-size: 1.25rem;
+        font-weight: 800;
+        color: var(--primary-dark);
+      }
+      .brand small {
+        display: block;
+        color: var(--muted);
+        font-size: 0.72rem;
+        font-weight: 500;
+      }
+      .nav a.button {
+        padding: 10px 18px;
+      }
+      .button {
+        display: inline-block;
+        border: 0;
+        border-radius: 999px;
+        padding: 13px 22px;
+        background: var(--primary);
+        color: white;
+        font-weight: 700;
+        cursor: pointer;
+        transition: 0.2s;
+        text-align: center;
+      }
+      .button:hover {
+        background: var(--primary-dark);
+        transform: translateY(-1px);
+      }
+      .hero {
+        padding: 68px 0 76px;
+      }
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 44px;
+        align-items: center;
+      }
+      .eyebrow {
+        color: var(--primary-dark);
+        font-weight: 800;
+        letter-spacing: 2px;
+        font-size: 0.78rem;
+      }
+      h1 {
+        font-size: clamp(2.3rem, 5vw, 4.3rem);
+        line-height: 1.08;
+        margin: 12px 0 18px;
+      }
+      .hero p {
+        color: var(--muted);
+        max-width: 520px;
+      }
+      .hero-photo {
+        min-height: 340px;
+        border-radius: 34px;
+        overflow: hidden;
+        background: #f3d4ad;
+        box-shadow: 0 18px 45px #70401d22;
+      }
+      .hero-photo img,
+      .product-photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      section {
+        padding: 58px 0;
+      }
+      .section-heading {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+      .section-heading h2 {
+        font-size: clamp(1.8rem, 4vw, 2.5rem);
+        margin: 5px 0;
+      }
+      .section-heading p {
+        color: var(--muted);
+        margin: 0;
+      }
+      .product-card {
+        max-width: 780px;
+        margin: auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        background: white;
+        border-radius: var(--radius);
+        overflow: hidden;
+        box-shadow: 0 12px 35px #70401d12;
+      }
+      .product-photo {
+        min-height: 310px;
+        background: #f3d4ad;
+      }
+      .product-info {
+        padding: 30px;
+        align-self: center;
+      }
+      .tag {
+        color: var(--primary-dark);
+        font-size: 0.75rem;
+        font-weight: 800;
+        letter-spacing: 1px;
+      }
+      .product-info h3 {
+        font-size: 1.7rem;
+        margin: 8px 0;
+      }
+      .muted {
+        color: var(--muted);
+      }
+      .price {
+        font-size: 1.4rem;
+        color: var(--primary-dark);
+        font-weight: 800;
+        margin: 14px 0;
+      }
+      .order-section {
+        background: #fff0df;
+      }
+      .order-card {
+        max-width: 720px;
+        margin: auto;
+        background: white;
+        padding: 30px;
+        border-radius: var(--radius);
+        box-shadow: 0 12px 35px #70401d12;
+      }
+      .order-card h3 {
+        margin-top: 0;
+      }
+      .quantity {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin: 12px 0 22px;
+      }
+      .quantity button {
+        width: 38px;
+        height: 38px;
+        border: 0;
+        border-radius: 50%;
+        background: #ffead9;
+        color: var(--primary-dark);
+        font-size: 1.3rem;
+        font-weight: 800;
+        cursor: pointer;
+      }
+      #qty {
+        min-width: 24px;
+        text-align: center;
+        font-weight: 800;
+        font-size: 1.1rem;
+      }
+      .summary {
+        background: var(--cream);
+        padding: 16px;
+        border-radius: 14px;
+        margin: 18px 0 24px;
+      }
+      .summary-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 15px;
+        margin: 5px 0;
+      }
+      .summary-total {
+        border-top: 1px solid #e7d9c9;
+        padding-top: 10px;
+        margin-top: 10px;
+        font-weight: 800;
+      }
+      label {
+        display: block;
+        font-weight: 700;
+        margin: 14px 0 6px;
+      }
+      input,
+      textarea {
+        width: 100%;
+        padding: 13px 14px;
+        border: 1px solid #e3d8cc;
+        border-radius: 11px;
+        font: inherit;
+        background: white;
+        outline-color: var(--primary);
+      }
+      textarea {
+        min-height: 85px;
+        resize: vertical;
+      }
+      .checkout {
+        width: 100%;
+        margin-top: 20px;
+        background: var(--green);
+      }
+      .checkout:hover {
+        background: #10683b;
+      }
+      .note {
+        font-size: 0.85rem;
+        color: var(--muted);
+        text-align: center;
+      }
+      footer {
+        padding: 28px 0;
+        text-align: center;
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+      @media (max-width: 700px) {
+        .hero {
+          padding: 42px 0;
+        }
+        .hero-grid,
+        .product-card {
+          grid-template-columns: 1fr;
+        }
+        .hero-photo {
+          min-height: 250px;
+        }
+        .product-photo {
+          min-height: 240px;
+        }
+        .product-info,
+        .order-card {
+          padding: 22px;
+        }
+        .nav {
+          min-height: 64px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- GANTI NAMA BRAND DAN SLOGAN DI BAGIAN INI -->
+    <header>
+      <div class="container nav">
+        <a class="brand" href="#">
+          <img src="logo_rochi.png" alt="Logo ROCHI" class="brand-logo" />
+
+          <span class="brand-text">
+            <strong>ROCHI</strong>
+            <small>Renyah di luar, Lembut di dalam</small>
+          </span>
+        </a>
+        <a class="button" href="#pesan">Pesan Sekarang</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container hero-grid">
+          <div>
+            <div class="eyebrow">HOMEMADE • FRESH • LEZAT</div>
+            <h1>Roti goreng dengan tekstur renyah di luar, lembut di dalam!</h1>
+            <p>
+              Cocok banget buat teman santai, camilan saat belajar, atau sekadar
+              memanjakan diri.
+            </p>
+            <a class="button" href="#menu">Lihat Menu</a>
+          </div>
+          <div class="hero-photo">
+            <img
+              src="Donat Goreng Renyah Isi Cokelat Lumer.png"
+              alt="Foto produk unggulan"
+            />
+          </div>
+        </div>
+      </section>
+
+      <section id="menu">
+        <div class="container">
+          <div class="section-heading">
+            <div class="eyebrow">MENU FAVORIT</div>
+            <h2>Produk Andalan Kami</h2>
+            <p>Pilih produk favoritmu dan pesan dengan mudah.</p>
+          </div>
+          <article class="product-card">
+            <div class="product-photo">
+              <img
+                src="Donat Goreng Renyah Isi Cokelat Lumer.png"
+                alt="Foto produk"
+              />
+            </div>
+            <div class="product-info">
+              <div class="tag">MENU ANDALAN</div>
+              <h3 id="productName">Roti Goreng Cokelat</h3>
+              <p class="muted">
+                Roti goreng dengan tekstur renyah di luar, lembut di dalam, dan
+                isian cokelat yang lumer di setiap gigitan.
+              </p>
+              <div class="price" id="productPrice">Rp5.000 / porsi</div>
+              <a class="button" href="#pesan">Pesan Produk</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="order-section" id="pesan">
+        <div class="container">
+          <div class="section-heading">
+            <div class="eyebrow">ORDER ONLINE</div>
+            <h2>Yuk, pesan sekarang!</h2>
+            <p>Isi jumlah pesanan dan data diri, lalu lanjutkan ke WhatsApp.</p>
+          </div>
+          <div class="order-card">
+            <h3>Jumlah Pesanan</h3>
+            <div class="quantity">
+              <button type="button" id="minus" aria-label="Kurangi jumlah">
+                −
+              </button>
+              <span id="qty"></span>
+              <button type="button" id="plus" aria-label="Tambah jumlah">
+                +
+              </button>
+              <span class="muted">porsi</span>
+            </div>
+
+            <div class="summary">
+              <div class="summary-row">
+                <span id="summaryName">Nama Produk × 1</span
+                ><strong id="subtotal">Rp5.000</strong>
+              </div>
+              <div class="summary-row summary-total">
+                <span>Total Belanja</span><strong id="total">Rp5.000</strong>
+              </div>
+            </div>
+
+            <h3>Data Pemesan</h3>
+            <form id="orderForm">
+              <label for="customerName">Nama lengkap</label>
+              <input
+                id="customerName"
+                type="text"
+                placeholder="Nama kamu"
+                required
+              />
+
+              <label for="customerAddress">Alamat pengiriman</label>
+              <textarea
+                id="customerAddress"
+                placeholder="Tulis alamat lengkap"
+                required
+              ></textarea>
+
+              <label for="customerNote">Catatan (opsional)</label>
+              <textarea
+                id="customerNote"
+                placeholder="Contoh: pedas dipisah, patokan rumah, dll."
+              ></textarea>
+
+              <button class="button checkout" type="submit">
+                Checkout via WhatsApp
+              </button>
+            </form>
+            <p class="note">
+              Pesanan akan dikirim ke WhatsApp penjual untuk konfirmasi. Ongkos
+              kirim dapat dibicarakan langsung.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      © <span id="year"></span> NAMA BRAND · Terima kasih sudah berbelanja!
+    </footer>
+
+    <script>
+      // ================== PENGATURAN TOKO ==================
+      // Nomor WA gunakan kode negara 62, tanpa +, spasi, atau tanda hubung.
+      const WHATSAPP_NUMBER = "6281913883802";
+      const PRODUCT_NAME = "Rochi Roti Goreng Cokelat";
+      const PRODUCT_PRICE = 5000;
+      // =====================================================
+
+      let quantity = 0;
+      const rupiah = (number) =>
+        new Intl.NumberFormat("id-ID", {
+          style: "currency",
+          currency: "IDR",
+          maximumFractionDigits: 0,
+        }).format(number);
+
+      function updateOrder() {
+        const total = quantity * PRODUCT_PRICE;
+        document.getElementById("qty").textContent = quantity;
+        document.getElementById("summaryName").textContent =
+          `${PRODUCT_NAME} × ${quantity}`;
+        document.getElementById("subtotal").textContent = rupiah(total);
+        document.getElementById("total").textContent = rupiah(total);
+      }
+
+      document.getElementById("productName").textContent = PRODUCT_NAME;
+      document.getElementById("productPrice").textContent =
+        `${rupiah(PRODUCT_PRICE)} / porsi`;
+      document.getElementById("minus").addEventListener("click", () => {
+        if (quantity > 0) quantity--;
+        updateOrder();
+      });
+      document.getElementById("plus").addEventListener("click", () => {
+        quantity++;
+        updateOrder();
+      });
+
+      document
+        .getElementById("orderForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          const name = document.getElementById("customerName").value.trim();
+          const address = document
+            .getElementById("customerAddress")
+            .value.trim();
+          const note = document.getElementById("customerNote").value.trim();
+
+          if (!name || !address) {
+            alert("Mohon isi nama dan alamat terlebih dahulu.");
+            return;
+          }
+          if (!/^62\d{8,15}$/.test(WHATSAPP_NUMBER)) {
+            alert(
+              "Nomor WhatsApp toko belum benar. Periksa WHATSAPP_NUMBER di bagian pengaturan.",
+            );
+            return;
+          }
+
+          const total = quantity * PRODUCT_PRICE;
+          const message = `Halo, saya ingin memesan:
+
+Produk: ${PRODUCT_NAME}
+Jumlah: ${quantity} porsi
+Total: ${rupiah(total)}
+
+Nama: ${name}
+Alamat: ${address}
+Catatan: ${note || "-"}
+
+Mohon konfirmasi pesanan saya. Terima kasih.`;
+
+          const whatsappURL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+          window.open(whatsappURL, "_blank");
+        });
+
+      document.getElementById("year").textContent = new Date().getFullYear();
+      updateOrder();
+    </script>
+  </body>
+</html>
+<!-- ''' path = Path("/mnt/data/template_toko_satu_file.html") path.write_text(html,
+encoding="utf-8") print(f"File berhasil dibuat: {path}") -->
